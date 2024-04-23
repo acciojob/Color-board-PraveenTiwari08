@@ -1,20 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
   const board = document.getElementById("board");
-  const colors = ["red", "blue", "green", "yellow", "orange", "purple", "cyan", "magenta"];
 
   // Create 800 boxes
   for (let i = 0; i < 800; i++) {
     const box = document.createElement("div");
     box.classList.add("square");
-    box.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
     board.appendChild(box);
 
     // Add event listener to each box
     box.addEventListener("mouseover", function() {
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      // Generate a random color
+      const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+      // Change background color
       this.style.backgroundColor = randomColor;
+      // After 1 second, revert back to original color
       setTimeout(() => {
-        this.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        this.style.backgroundColor = "initial";
       }, 1000);
     });
   }
